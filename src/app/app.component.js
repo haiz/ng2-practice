@@ -12,7 +12,9 @@ var AppComponent = (function () {
         this.showHeading = true;
         this.showPopup = true;
         this.heroes = ['Magneta', 'Bombasto', 'Magma', 'Tornado', 'kaka'];
-        this.imgSrc = 'http://kenh14cdn.com/thumb_w/650/2017/photo-1-1489227741832-0-8-359-586-crop-1489284062974-1489339445734.jpg';
+        // imgSrc = 'http://kenh14cdn.com/thumb_w/650/2017/photo-1-1489227741832-0-8-359-586-crop-1489284062974-1489339445734.jpg';
+        // imgSrc = 'https://dummyimage.com/1400x400/ff8811/fff';
+        this.imgSrc = 'https://dummyimage.com/200x2400/ff8811/fff';
     }
     AppComponent.prototype.toggleHeading = function () {
         this.showHeading = !this.showHeading;

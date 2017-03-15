@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ProfileService {
-    private totalProfile: number = 0;
+    private profiles: any[] = [];
 
-    addProfile() {
-        this.totalProfile += 1;
+    addProfile(profile?: any) {
+        if (profile) {
+            this.profiles.push(profile);
+        }
     }
 
     getTotalProfile() {
-        return this.totalProfile;
+        return this.profiles.length;
     }
 }

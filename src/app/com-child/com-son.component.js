@@ -10,6 +10,9 @@ var core_1 = require("@angular/core");
 var ComSonComponent = (function () {
     function ComSonComponent() {
     }
+    ComSonComponent.prototype.iHave = function () {
+        console.log('I have a bird');
+    };
     return ComSonComponent;
 }());
 ComSonComponent = __decorate([

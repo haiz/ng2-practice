@@ -1,5 +1,10 @@
 <div style="border: 2px solid blue; margin: 5px;">
 
     <button type="button" (click)="addProfile()">Add Profile</button>
-    <p>Total profile: {{totalProfile}}</p>
+    <p dir-empty>Total profile: {{totalProfile}}</p>
+    <template #tpl>
+        <p>This is template inside the com-child (Inside the box with a blue border)</p>
+    </template>
+    <div #div>I am a div inside the blue box</div>
+    <com-son #son></com-son>
 </div>

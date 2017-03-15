@@ -14,12 +14,14 @@ var popup_preview_component_1 = require("./popup-preview/popup-preview.component
 var com_grandparent_component_1 = require("./com-grandparent/com-grandparent.component");
 var com_parent_component_1 = require("./com-parent/com-parent.component");
 var com_child_component_1 = require("./com-child/com-child.component");
+var com_son_component_1 = require("./com-child/com-son.component");
 var myhighlighter_directive_1 = require("./shared/directives/myhighlighter.directive");
 var color_directive_1 = require("./shared/directives/color.directive");
 var red_directive_js_1 = require("./shared/directives/red.directive.js");
 var draggable_directive_1 = require("./shared/directives/draggable.directive");
 var previewable_directive_1 = require("./shared/directives/previewable.directive");
 var resizable_directive_1 = require("./shared/directives/resizable.directive");
+var dir_emtpy_directive_1 = require("./shared/directives/dir-emtpy.directive");
 var profile_service_1 = require("./shared/services/profile.service");
 // import { Sorter } from './shared/utils/sorter';
 // import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
@@ -38,12 +40,14 @@ AppModule = __decorate([
             com_grandparent_component_1.ComGrandparentComponent,
             com_parent_component_1.ComParentComponent,
             com_child_component_1.ComChildComponent,
+            com_son_component_1.ComSonComponent,
             myhighlighter_directive_1.MyhighlighterDirective,
             color_directive_1.ColorDirective,
             red_directive_js_1.RedDirective,
             draggable_directive_1.DraggableDirective,
             previewable_directive_1.PreviewableDirective,
             resizable_directive_1.ResizableDirective,
+            dir_emtpy_directive_1.DirEmptyDirective,
         ],
         providers: [
             profile_service_1.ProfileService

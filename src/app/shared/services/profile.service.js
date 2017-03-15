@@ -9,13 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ProfileService = (function () {
     function ProfileService() {
-        this.totalProfile = 0;
+        this.profiles = [];
     }
-    ProfileService.prototype.addProfile = function () {
-        this.totalProfile += 1;
+    ProfileService.prototype.addProfile = function (profile) {
+        if (profile) {
+            this.profiles.push(profile);
+        }
     };
     ProfileService.prototype.getTotalProfile = function () {
-        return this.totalProfile;
+        return this.profiles.length;
     };
     return ProfileService;
 }());

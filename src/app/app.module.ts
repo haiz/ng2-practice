@@ -8,6 +8,7 @@ import { PopupPreviewComponent } from './popup-preview/popup-preview.component';
 import { ComGrandparentComponent } from './com-grandparent/com-grandparent.component';
 import { ComParentComponent } from './com-parent/com-parent.component';
 import { ComChildComponent } from './com-child/com-child.component';
+import { ComSonComponent } from './com-child/com-son.component';
 
 import { MyhighlighterDirective } from './shared/directives/myhighlighter.directive';
 import { ColorDirective } from './shared/directives/color.directive';
@@ -16,6 +17,7 @@ import { RedDirective } from './shared/directives/red.directive.js';
 import { DraggableDirective } from './shared/directives/draggable.directive';
 import { PreviewableDirective } from './shared/directives/previewable.directive';
 import { ResizableDirective } from './shared/directives/resizable.directive';
+import { DirEmptyDirective } from './shared/directives/dir-emtpy.directive';
 
 
 import { ProfileService } from './shared/services/profile.service';
@@ -36,6 +38,7 @@ import { ProfileService } from './shared/services/profile.service';
     ComGrandparentComponent,
     ComParentComponent,
     ComChildComponent,
+    ComSonComponent,
 
     MyhighlighterDirective,
     ColorDirective,
@@ -44,6 +47,7 @@ import { ProfileService } from './shared/services/profile.service';
     DraggableDirective,
     PreviewableDirective,
     ResizableDirective,
+    DirEmptyDirective,
     // Sorter,
     // CapitalizePipe,
     // TrimPipe
