@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ProfileService } from '../shared/services/profile.service';
-import { ComSonComponent } from './com-son.component';
 
 @Component({
     selector: 'com-child',

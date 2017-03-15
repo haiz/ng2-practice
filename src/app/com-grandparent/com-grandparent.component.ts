@@ -9,7 +9,7 @@ import {ProfileService} from '../shared/services/profile.service';
 export class ComGrandparentComponent implements OnInit {
     totalProfile: number = 0;
     constructor(private profileService: ProfileService) {}
-    
+
     ngOnInit() {
         this.getProfile();
     }

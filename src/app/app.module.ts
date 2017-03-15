@@ -29,7 +29,7 @@ import { ProfileService } from './shared/services/profile.service';
 
 
 @NgModule({
-  imports: [BrowserModule], //DraggableModule
+  imports: [BrowserModule], // DraggableModule
   declarations: [
     AppComponent,
     PopupPreviewComponent,

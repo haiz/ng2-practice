@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, OnInit, OnDestroy, AfterViewInit, QueryList } from '@angular/core';
+import { Component, ViewChild, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { PreviewableDirective } from '../shared/directives/previewable.directive';
 
 @Component({
