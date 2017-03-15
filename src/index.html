@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angular QuickStart</title>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="node_modules/iviewer/jquery.iviewer.css">
+    <!--<link rel="stylesheet" href="assets/iviewer/jquery.iviewer.css">-->
+
+    <!-- Polyfill(s) for older browsers -->
+    
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!--<script type="text/javascript" src="assets/iviewer/test/jquery.js" ></script>-->
+    <!--<script type="text/javascript" src="assets/iviewer/test/jqueryui.js" ></script>-->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>-->
+    <!--<script src="node_modules/iviewer/jquery.iviewer.js"></script>-->
+    <script src="assets/iviewer/jquery.iviewer.js"></script>
+    
+    
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('main-jit.js').catch(function(err){ console.error(err); });
+    </script>
+    <style type="text/css">
+      html, body {
+          margin: 0;
+          height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <my-app>Loading AppComponent content here ...</my-app>
+  </body>
+</html>

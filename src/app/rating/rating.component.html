@@ -1,0 +1,4 @@
+<div *ngFor="let element of range; let i = index;">
+	<img *ngIf="i < rate" src="../../assets/icons/svgs/full-star.svg">
+	<img *ngIf="i >= rate" src="../../assets/icons/svgs/empty-star.svg">
+</div>

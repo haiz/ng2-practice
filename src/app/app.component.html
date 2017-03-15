@@ -1,0 +1,22 @@
+<style>
+#resizable { width: 150px; height: 150px; padding: 0.5em; }
+#resizable h3 { text-align: center; margin: 0; }
+</style>
+<!--<button (click)="toggleHeading()">Toggle Heading</button>
+<h1 *ngIf="showHeading" my-highlighter>Hello Angular</h1>
+
+<h2 color="red" bgColor="green">Hello Angular</h2>
+
+<h2 red>Hello Moto</h2>
+
+<h3>List of Heroes</h3>
+<div *ngFor="let hero of heroes">{{hero}}</div>
+<div style="width: 150px; height: 150px; background-color: yellow;" draggable><p style="margin: auto;">Drag me</p></div>-->
+
+<button (click)="togglePopup()">Toggle Popup</button>{{showPopup}}
+<popup-preview [src]="imgSrc" *ngIf="showPopup"></popup-preview>
+
+<!--<div id="resizable" draggable class="ui-widget-content">
+  <h3 class="ui-widget-header">Resizable</h3>
+</div>-->
+<com-grandparent></com-grandparent>
