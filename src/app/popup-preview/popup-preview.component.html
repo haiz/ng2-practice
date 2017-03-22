@@ -1,8 +1,16 @@
-<div style="width: 300px; height: 300px; background-color: cyan; overflow: hidden; border: 2px solid red;" draggable resizable>
-    <div style="height: 30px; background-color: green;">
-        <button type="button" (click)="zoomBy(1)">Zoom In</button>
-        <button type="button" (click)="zoomBy(-1)">Zoom Out</button>
+<div style="overflow: hidden; border: 1px solid green; margin: 0px auto; position: relative; display: table;" draggable>
+<!--[resizable]="resizeOptions"-->
+    <div style="height: 40px; background-color: green; display: inline-block;">
+        {{maxSize.width}}x{{maxSize.height}}
+        <button type="button" (click)="zoomIn()">Zoom In</button>
+        <button type="button" (click)="zoomOut()">Zoom Out</button>
+        <button type="button" (click)="fit()">Fit</button>
+        <button type="button" (click)="actualSize()">Actual Size</button>
+        <button type="button" (click)="rotateLeft()">Rotate left</button>
+        <button type="button" (click)="rotateRight()">Rotate Right</button>
     </div>
-    <div *ngIf="imgUrl" #ivObj="previewable" [previewable]="ivOptions" style="height: 266px; border: 2px solid blue; position: relative;"></div>
-    <div *ngIf="!imgUrl" style="height: 266px; border: 2px solid blue;">Please set the image url</div>
+    <div #box style="background-color: yellow; position: relative; margin: 0px auto; overflow: hidden;">
+        <div *ngIf="imgUrl" #ivObj="previewable" [previewable]="previewOptions" [box]="boxOptions" style="width: 100%; height: 100%;"></div>
+        <div *ngIf="!imgUrl">Please set the image url</div>
+    </div>
 </div>

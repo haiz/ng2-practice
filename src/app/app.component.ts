@@ -18,6 +18,7 @@ export class AppComponent {
   }
 
   togglePopup() {
+    console.log(this.showPopup);
     this.showPopup = !this.showPopup;
   }
 }

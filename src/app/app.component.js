@@ -20,6 +20,7 @@ var AppComponent = (function () {
         this.showHeading = !this.showHeading;
     };
     AppComponent.prototype.togglePopup = function () {
+        console.log(this.showPopup);
         this.showPopup = !this.showPopup;
     };
     return AppComponent;

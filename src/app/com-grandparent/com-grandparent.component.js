@@ -21,9 +21,14 @@ var ComGrandparentComponent = (function () {
     };
     ComGrandparentComponent.prototype.getProfile = function () {
         this.totalProfile = this.profileService.getTotalProfile();
+        console.log(this.tpl);
     };
     return ComGrandparentComponent;
 }());
+__decorate([
+    core_1.ContentChild(core_1.ContentChild),
+    __metadata("design:type", Object)
+], ComGrandparentComponent.prototype, "tpl", void 0);
 ComGrandparentComponent = __decorate([
     core_1.Component({
         selector: 'com-grandparent',

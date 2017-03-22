@@ -16,7 +16,7 @@ var ResizableDirective = (function () {
         this.options = {};
     }
     ResizableDirective.prototype.ngOnInit = function () {
-        jQuery(this.el.nativeElement).resizable();
+        jQuery(this.el.nativeElement).resizable(this.options);
     };
     return ResizableDirective;
 }());

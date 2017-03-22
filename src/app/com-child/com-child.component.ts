@@ -10,6 +10,7 @@ export class ComChildComponent implements OnInit {
     @ViewChild('tpl') tpl: any; // This is a TemplateRef
     @ViewChild('div') div: any; // This is a ElementRef
     @ViewChild('son') son: any; // This is a ComSonComponent
+
     totalProfile: number;
     constructor(private profileService: ProfileService, private _vcr: ViewContainerRef, private _el: ElementRef) { }
 

@@ -12,6 +12,6 @@ export class ResizableDirective implements OnInit {
     constructor(private el: ElementRef) { }
 
     ngOnInit() {
-        jQuery(this.el.nativeElement).resizable();
+        jQuery(this.el.nativeElement).resizable(this.options);
     }
 }

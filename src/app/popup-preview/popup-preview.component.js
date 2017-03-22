@@ -13,38 +13,91 @@ var core_1 = require("@angular/core");
 var previewable_directive_1 = require("../shared/directives/previewable.directive");
 var PopupPreviewComponent = (function () {
     function PopupPreviewComponent() {
+        this.boxOptions = {};
+        console.log('popup constructor');
+        this.setMaxSize();
     }
+    Object.defineProperty(PopupPreviewComponent.prototype, "src", {
+        set: function (url) {
+            this.imgUrl = url;
+            if (this.imgUrl) {
+                this.previewOptions = {
+                    src: this.imgUrl,
+                    mousewheel: false,
+                    zoom_animation: false
+                };
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    PopupPreviewComponent.prototype.onResize = function (event) {
+        this.setMaxSize();
+    };
+    ;
+    PopupPreviewComponent.prototype.setMaxSize = function () {
+        this.maxSize = {
+            width: Math.round(window.innerWidth * 0.8) - 2,
+            height: Math.round(window.innerHeight * 0.9) - 42,
+        };
+        this.boxOptions.maxSize = this.maxSize;
+    };
     PopupPreviewComponent.prototype.ngOnInit = function () {
-        console.log('init popup component');
-        if (this.imgUrl) {
-            this.ivOptions = {
-                src: this.imgUrl,
-                mousewheel: false,
-                zoom_animation: false
-            };
-        }
+        console.log('Popup preview onInit tadatadaaaaaa: ', this.box);
+        this.boxOptions.el = this.box;
     };
     PopupPreviewComponent.prototype.ngOnDestroy = function () {
         console.log('destroy popup component');
     };
     PopupPreviewComponent.prototype.ngAfterViewInit = function () {
+        console.log('Popup preview after view init tadatadaaaaaa');
     };
-    PopupPreviewComponent.prototype.zoomBy = function (n) {
-        console.log('popup zoom by: ' + n);
-        console.log(this.ivObj);
-        // this.pvObj.zoomBy(n);
-        this.ivObj.zoomBy(n);
+    // zoomBy(n: number) {
+    //     console.log('popup zoom by: ' + n);
+    //     console.log(this.ivObj);
+    //     // this.pvObj.zoomBy(n);
+    //     this.ivObj.zoomBy(n);
+    // }
+    PopupPreviewComponent.prototype.zoomIn = function () {
+        this.ivObj.zoomIn();
+    };
+    PopupPreviewComponent.prototype.zoomOut = function () {
+        this.ivObj.zoomOut();
+    };
+    PopupPreviewComponent.prototype.fit = function () {
+        this.ivObj.fit();
+    };
+    PopupPreviewComponent.prototype.actualSize = function () {
+        this.ivObj.actualSize();
+    };
+    PopupPreviewComponent.prototype.rotateLeft = function () {
+        this.ivObj.rotateLeft();
+    };
+    PopupPreviewComponent.prototype.rotateRight = function () {
+        this.ivObj.rotateRight();
     };
     return PopupPreviewComponent;
 }());
 __decorate([
+    core_1.ViewChild('box'),
+    __metadata("design:type", Object)
+], PopupPreviewComponent.prototype, "box", void 0);
+__decorate([
     core_1.Input('src'),
-    __metadata("design:type", String)
-], PopupPreviewComponent.prototype, "imgUrl", void 0);
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [String])
+], PopupPreviewComponent.prototype, "src", null);
 __decorate([
     core_1.ViewChild('ivObj'),
     __metadata("design:type", previewable_directive_1.PreviewableDirective)
 ], PopupPreviewComponent.prototype, "ivObj", void 0);
+__decorate([
+    core_1.HostListener('window:resize', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], PopupPreviewComponent.prototype, "onResize", null);
 PopupPreviewComponent = __decorate([
     core_1.Component({
         selector: 'popup-preview',

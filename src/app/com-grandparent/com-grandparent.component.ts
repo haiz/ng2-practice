@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ContentChild} from '@angular/core';
 import {ProfileService} from '../shared/services/profile.service';
 
 @Component({
@@ -7,6 +7,7 @@ import {ProfileService} from '../shared/services/profile.service';
 })
 
 export class ComGrandparentComponent implements OnInit {
+    @ContentChild(ContentChild) tpl: any;
     totalProfile: number = 0;
     constructor(private profileService: ProfileService) {}
 
@@ -16,5 +17,6 @@ export class ComGrandparentComponent implements OnInit {
 
     getProfile() {
         this.totalProfile = this.profileService.getTotalProfile();
+        console.log(this.tpl);
     }
 }

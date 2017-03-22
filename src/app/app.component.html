@@ -13,10 +13,12 @@
 <div *ngFor="let hero of heroes">{{hero}}</div>
 <div style="width: 150px; height: 150px; background-color: yellow;" draggable><p style="margin: auto;">Drag me</p></div>-->
 
-<button (click)="togglePopup()">Toggle Popup</button>{{showPopup}}
-<popup-preview [src]="imgSrc" *ngIf="showPopup"></popup-preview>
+<!--<button (click)="togglePopup()">Toggle Popup</button>{{showPopup}}-->
+<div style="width: 80%; height: 90%; margin: auto; background-color: #ccc;">
+  <popup-preview [src]="imgSrc" *ngIf="showPopup"></popup-preview>
+</div>
 
 <!--<div id="resizable" draggable class="ui-widget-content">
   <h3 class="ui-widget-header">Resizable</h3>
 </div>-->
-<com-grandparent></com-grandparent>
+<!--<com-grandparent></com-grandparent>-->

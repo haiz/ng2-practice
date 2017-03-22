@@ -264,6 +264,10 @@ $.widget( "ui.iviewer", $.ui.mouse, {
 
         this.current_zoom = this.options.zoom;
 
+        this.current_zoom_center = {x: 0, y: 0};
+
+        this.fitting = false;
+
         if(this.options.src === null){
             return;
         }
@@ -399,7 +403,13 @@ $.widget( "ui.iviewer", $.ui.mouse, {
     update: function()
     {
         this._updateContainerInfo();
-        this.setCoords(this.img_object.x(), this.img_object.y());
+
+        if (this.fitting) {
+            this.fit(this.options.zoom_animation);
+        }
+        else {
+            this.setCoords(this.img_object.x(), this.img_object.y());
+        }
     },
 
     loadImage: function( src )
@@ -456,7 +466,8 @@ $.widget( "ui.iviewer", $.ui.mouse, {
             new_zoom = this.options.height / this.img_object.orig_height() * 100;
         }
 
-      this.set_zoom(new_zoom, skip_animation);
+        this.set_zoom(new_zoom, skip_animation);
+        this.fitting = true;
     },
 
     /**
@@ -478,10 +489,10 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         var dx = x-Math.round(this.options.width/2);
         var dy = y-Math.round(this.options.height/2);
 
-        var new_x = this.img_object.x() - dx;
-        var new_y = this.img_object.y() - dy;
-
-        this.setCoords(new_x, new_y);
+        // var new_x = this.img_object.x() - dx;
+        // var new_y = this.img_object.y() - dy;
+        // this.setCoords(new_x, new_y);
+        this.setCoords(-dx, -dy);
     },
 
     /**
@@ -502,6 +513,10 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         var coords = this._correctCoords(x,y);
         this.img_object.x(coords.x);
         this.img_object.y(coords.y);
+        this.current_zoom_center = {
+            x: Math.round(this.options.width/2) - x,
+            y: Math.round(this.options.height/2) - y,
+        };
     },
 
     _correctCoords: function( x, y )
@@ -615,6 +630,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
     **/
     set_zoom: function(new_zoom, skip_animation, zoom_center)
     {
+        this.fitting = false;
         if (this._trigger('onZoom', 0, new_zoom) == false) {
             return;
         }
@@ -654,6 +670,8 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         var new_x = util.scaleValue( util.descaleValue(old_x, this.current_zoom), new_zoom);
         var new_y = util.scaleValue( util.descaleValue(old_y, this.current_zoom), new_zoom);
 
+        var new_zoom_center = {x: Math.ceil(new_x), y: Math.ceil(new_y)};
+
         new_x = zoom_center.x - new_x;
         new_y = zoom_center.y - new_y;
 
@@ -667,12 +685,12 @@ $.widget( "ui.iviewer", $.ui.mouse, {
 
         var coords = this._correctCoords( new_x, new_y ),
             self = this;
-
         this.img_object.setImageProps(new_width, new_height, coords.x, coords.y,
                                         skip_animation, function() {
             self._trigger('onAfterZoom', 0, new_zoom );
         });
         this.current_zoom = new_zoom;
+        this.current_zoom_center = new_zoom_center;
 
         this.update_status();
     },
@@ -731,7 +749,7 @@ $.widget( "ui.iviewer", $.ui.mouse, {
         if (deg >= 360) { deg -= 360; }
 
         if (deg === this.img_object.angle()) { return; }
-
+        this._trigger('onBeforeAngle', 0, { angle: this.img_object.angle(), zoom_center: this.current_zoom_center });
         this.img_object.angle(deg);
         //the rotate behavior is different in all editors. For now we  just center the
         //image. However, it will be better to try to keep the position.
@@ -810,6 +828,10 @@ $.widget( "ui.iviewer", $.ui.mouse, {
                 return this.img_object[param]();
             case 'zoom':
                 return this.current_zoom;
+            case 'zoom_center':
+                return this.current_zoom_center;
+            case 'fit':
+                return this.fitting;
             case 'options':
                 return this.options;
             case 'src':
@@ -1235,16 +1257,15 @@ $.ui.iviewer.ImageObject = function(do_anim) {
                 .animate(params, {
                     duration: 200,
                     complete: complete,
-                    // step: function(now, fx) {
-                    //     if(useIeTransforms && swapDims && (fx.prop === 'top')) {
-                    //         console.log('hhhhhhhh');
-                    //         var percent = (now - fx.start) / (fx.end - fx.start);
+                    step: function(now, fx) {
+                        if(useIeTransforms && swapDims && (fx.prop === 'top')) {
+                            var percent = (now - fx.start) / (fx.end - fx.start);
 
-                    //         img.height(ieh + iedh * percent);
-                    //         img.width(iew + iedw * percent);
-                    //         img.css('top', now);
-                    //     }
-                    // }
+                            img.height(ieh + iedh * percent);
+                            img.width(iew + iedw * percent);
+                            img.css('top', now);
+                        }
+                    }
                 });
         } else {
             this._img.css(params);
