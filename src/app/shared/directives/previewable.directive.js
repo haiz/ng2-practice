@@ -163,14 +163,7 @@ var PreviewableDirective = (function () {
     };
     PreviewableDirective.prototype.initIviewer = function () {
         var that = this;
-        var options = {
-            // src: "test_active_with_objects.GIF",
-            // src: 'https://dummyimage.com/300x1400/ff88cc/0f0',
-            src: 'https://dummyimage.com/1400x300/ff88cc/0f0',
-            // src: 'https://dummyimage.com/300x200/ff88cc/0f0',
-            zoom_min: 5,
-            ui_disabled: true,
-            zoom_animation: false,
+        var fs = {
             onFinishLoad: function (ev) {
                 that.ivHelper.enlargeBox(true);
             },
@@ -202,6 +195,8 @@ var PreviewableDirective = (function () {
                 that.ivHelper.box.zooming = 0;
             }
         };
+        var options = {};
+        Object.assign(options, this.ivOptions, fs);
         this.ivObj = jQuery(this.el.nativeElement).iviewer(options);
         this.ivHelper = new IViewerHelper(this.ivObj, this.boxOptions);
     };

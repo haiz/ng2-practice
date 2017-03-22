@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Input, SimpleChange, DoCheck, KeyValueDiffers  } from '@angular/core';
+import { Directive, ElementRef, OnInit, Input, DoCheck, KeyValueDiffers } from '@angular/core';
 
 declare var jQuery: any;
 
@@ -98,7 +98,7 @@ class IViewerHelper {
     }
 
     // get iviewer object information
-    info () {
+    info() {
         return {
             displaySize: {
                 width: this.ivObj.iviewer('info', 'display_width'),
@@ -165,15 +165,7 @@ export class PreviewableDirective implements OnInit, DoCheck {
 
     initIviewer() {
         let that = this;
-        let options = {
-            // src: "test_active_with_objects.GIF",
-            // src: 'https://dummyimage.com/300x1400/ff88cc/0f0',
-            src: 'https://dummyimage.com/1400x300/ff88cc/0f0',
-            // src: 'https://dummyimage.com/300x200/ff88cc/0f0',
-            zoom_min: 5,
-            ui_disabled: true,
-            zoom_animation: false,
-
+        let fs = {
             onFinishLoad: function (ev: any) {
                 that.ivHelper.enlargeBox(true);
             },
@@ -203,6 +195,8 @@ export class PreviewableDirective implements OnInit, DoCheck {
                 that.ivHelper.box.zooming = 0;
             }
         };
+        let options = {};
+        Object.assign(options, this.ivOptions, fs);
         this.ivObj = jQuery(this.el.nativeElement).iviewer(options);
         this.ivHelper = new IViewerHelper(this.ivObj, this.boxOptions);
     }
