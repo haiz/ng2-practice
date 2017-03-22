@@ -14,16 +14,24 @@ var previewable_directive_1 = require("../shared/directives/previewable.directiv
 var PopupPreviewComponent = (function () {
     function PopupPreviewComponent() {
         this.boxOptions = {};
-        console.log('popup constructor');
         this.setMaxSize();
     }
     Object.defineProperty(PopupPreviewComponent.prototype, "src", {
         set: function (url) {
             this.imgUrl = url;
             if (this.imgUrl) {
+                // this.previewOptions = {
+                //     src: this.imgUrl,
+                //     mousewheel: false,
+                //     zoom_animation: false
+                // };
                 this.previewOptions = {
-                    src: this.imgUrl,
-                    mousewheel: false,
+                    // src: "test_active_with_objects.GIF",
+                    // src: 'https://dummyimage.com/300x1400/ff88cc/0f0',
+                    src: 'https://dummyimage.com/1400x300/ff88cc/0f0',
+                    // src: 'https://dummyimage.com/300x200/ff88cc/0f0',
+                    zoom_min: 5,
+                    ui_disabled: true,
                     zoom_animation: false
                 };
             }
@@ -44,21 +52,8 @@ var PopupPreviewComponent = (function () {
         this.boxOptions.maxSize = this.maxSize;
     };
     PopupPreviewComponent.prototype.ngOnInit = function () {
-        console.log('Popup preview onInit tadatadaaaaaa: ', this.box);
         this.boxOptions.el = this.box;
     };
-    PopupPreviewComponent.prototype.ngOnDestroy = function () {
-        console.log('destroy popup component');
-    };
-    PopupPreviewComponent.prototype.ngAfterViewInit = function () {
-        console.log('Popup preview after view init tadatadaaaaaa');
-    };
-    // zoomBy(n: number) {
-    //     console.log('popup zoom by: ' + n);
-    //     console.log(this.ivObj);
-    //     // this.pvObj.zoomBy(n);
-    //     this.ivObj.zoomBy(n);
-    // }
     PopupPreviewComponent.prototype.zoomIn = function () {
         this.ivObj.zoomIn();
     };

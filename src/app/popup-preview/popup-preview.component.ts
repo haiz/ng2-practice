@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, OnDestroy, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ViewChild, Input, OnInit, HostListener } from '@angular/core';
 import { PreviewableDirective } from '../shared/directives/previewable.directive';
 
 @Component({
@@ -6,7 +6,7 @@ import { PreviewableDirective } from '../shared/directives/previewable.directive
     templateUrl: 'app/popup-preview/popup-preview.component.html'
 })
 
-export class PopupPreviewComponent implements OnDestroy, AfterViewInit {
+export class PopupPreviewComponent implements OnInit {
     private imgUrl: string;
     @ViewChild('box') box: any;
     public boxOptions: any = {};
@@ -15,14 +15,23 @@ export class PopupPreviewComponent implements OnDestroy, AfterViewInit {
     set src(url: string) {
         this.imgUrl = url;
         if (this.imgUrl) {
+            // this.previewOptions = {
+            //     src: this.imgUrl,
+            //     mousewheel: false,
+            //     zoom_animation: false
+            // };
             this.previewOptions = {
-                src: this.imgUrl,
-                mousewheel: false,
+                // src: "test_active_with_objects.GIF",
+                // src: 'https://dummyimage.com/300x1400/ff88cc/0f0',
+                src: 'https://dummyimage.com/1400x300/ff88cc/0f0',
+                // src: 'https://dummyimage.com/300x200/ff88cc/0f0',
+                zoom_min: 5,
+                ui_disabled: true,
                 zoom_animation: false
             };
         }
     };
-    // @ViewChild('ivObj') ivObj: PreviewableDirective;
+
     @ViewChild('ivObj') ivObj: PreviewableDirective;
     // resizeOptions = {
     //     aspectRatio: 1,
@@ -45,31 +54,12 @@ export class PopupPreviewComponent implements OnDestroy, AfterViewInit {
     }
 
     constructor() {
-        console.log('popup constructor');
         this.setMaxSize();
     }
 
     ngOnInit() {
-        console.log('Popup preview onInit tadatadaaaaaa: ', this.box);
         this.boxOptions.el = this.box;
     }
-
-    ngOnDestroy() {
-        console.log('destroy popup component');
-    }
-
-    ngAfterViewInit() {
-        console.log('Popup preview after view init tadatadaaaaaa');
-    }
-
-    // zoomBy(n: number) {
-    //     console.log('popup zoom by: ' + n);
-    //     console.log(this.ivObj);
-    //     // this.pvObj.zoomBy(n);
-    //     this.ivObj.zoomBy(n);
-    // }
-
-
 
     zoomIn() {
         this.ivObj.zoomIn();

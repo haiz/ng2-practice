@@ -190,7 +190,6 @@ var PreviewableDirective = (function () {
                 // zooming out
                 if (that.ivHelper.box.zooming < 0) {
                     if (info.coords.x >= 1 || info.coords.y >= 1) {
-                        // that.ivHelper.updateBoxSize(info.displaySize);
                         that.ivHelper.enlargeBox();
                     }
                 }
